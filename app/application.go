@@ -1,6 +1,14 @@
 package app
 
+import "github.com/gin-gonic/gin"
 
-func Startapplication(){
+
+var(
+	router = gin.Default()
+)
+func Start(){
+	mapUrls()
+	router.Run(":8080")
+
 
 }
