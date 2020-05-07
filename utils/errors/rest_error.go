@@ -11,9 +11,19 @@ type RestErr struct {
 
 func NewBadRequestError(message string)*RestErr{
 	return &RestErr{
-		Message: "Invalid json body",
+		Message: message,
 		Status: http.StatusBadRequest,
 		Error: "Bad_request ",
+
+
+	}
+}
+
+func NewNotFound(message string)*RestErr{
+	return &RestErr{
+		Message: message,
+		Status: http.StatusNotFound,
+		Error: "Not Found",
 
 
 	}

@@ -3,14 +3,19 @@ package services
 import (
 	"github.com/julsan26/bookstore-user-api/domain/users"
 	"github.com/julsan26/bookstore-user-api/utils/errors"
-	"net/http"
+
 )
 
-func CreateUser(user users.User) (*users.User, *errors.RestErr) {
-	return &user, nil
+func CreateUser(user users.User)(*users.User , *errors.RestErr) {
 
-	return nil, &errors.RestErr{
-		Status: http.StatusInternalServerError,
+	if err := user.Validate(); err != nil {
+		return nil, err
 	}
 
+	if err := user.Save(); err != nil {
+		return nil, err
+	}
+
+
+	return &user,nil
 }
